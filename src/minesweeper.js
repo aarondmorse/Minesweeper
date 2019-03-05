@@ -1,0 +1,44 @@
+const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
+  board = [];
+  for (let i=0; i < numberOfRows; i++){
+    row = [];
+    for (let j=0; j < numberOfColumns; j++){
+      row.push(' ');
+    }
+    board.push(row);
+  }
+  return board;
+}
+
+const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
+  board = [];
+  for (let i=0; i < numberOfRows; i++){
+    row = [];
+    for (let j=0; j < numberOfColumns; j++){
+      row.push(null);
+    }
+    board.push(row);
+  }
+
+  let numberOfBombsPlaced = 0;
+  while (numberOfBombsPlaced < numberOfBombs){
+    // Code to check for existing bomb will be added when we learn about control flow
+    let randomRowIndex = Math.floor(Math.random() * numberOfRows);
+    let randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
+    board[randomRowIndex][randomColumnIndex] = 'B';
+    numberOfBombsPlaced++
+  }
+
+  return board;
+}
+
+const printBoard = board => {
+  console.log(board.map(row => row.join(' | ')).join('\n'));
+}
+
+const playerBoard = generatePlayerBoard(3,4);
+const bombBoard = generateBombBoard(3,4,5);
+console.log('Player Board: ');
+printBoard(playerBoard);
+console.log('Bomb Board: ');
+printBoard(bombBoard);
